@@ -1,3 +1,10 @@
+@media only screen and (min-height: 1000px) {
+    #content {
+        margin-top: 75px;
+
+    }
+}
+
 html, body {
     font-family: 'Exo 2', sans-serif;
     background-color: black;
@@ -18,25 +25,34 @@ footer {
 }
 
 #greyBox {
-width: 40px;
-height: 40px;
-border-radius: .25rem;
-background-color: #2e2e2e;
-margin-left: 20px;
-margin-right: 10px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: .25rem;
+    background-color: #2e2e2e;
+    margin-left: 20px;
+    margin-right: 10px;
 }
 
 #blueBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: white;
     background-color: #384e8b;
     width: 40px;
     height: 40px;
     border-radius: .25rem;
     margin-left: 20px;
-   margin-right: 10px;
+    margin-right: 10px;
 }
+
 #content {
-    margin-top: 75px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -44,7 +60,14 @@ margin-right: 10px;
     align-items: center;
 }
 
-#loader {
+#loaderLabel {
+    position: absolute;
+    right: 250px;
+    bottom: 110px;
+    font-size: 50px;
+}
+
+#indicator {
     position: absolute;
     right: 50px;
     bottom: 50px;
@@ -55,48 +78,41 @@ margin-right: 10px;
     border-radius: 100%;
 }
 
-@keyframes rotating
-	{
-	from
-		{
-            
-		transform: rotate(0deg);
-		-o-transform: rotate(0deg);
-		-ms-transform: rotate(0deg);
-		-moz-transform: rotate(0deg);
-		-webkit-transform: rotate(0deg);
-		}
-	to
-		{
-            
-		transform: rotate(360deg);
-		-o-transform: rotate(360deg);
-		-ms-transform: rotate(360deg);
-		-moz-transform: rotate(360deg);
-		-webkit-transform: rotate(360deg);
-		}
-	}
-@-webkit-keyframes rotating
-	{
-	from
-		{
-		transform: rotate(0deg);
-		-webkit-transform: rotate(0deg);
-		}
-	to
-		{
-		transform: rotate(360deg);
-		-webkit-transform: rotate(360deg);
-		}
-	}
-.rotating
-	{
-	-webkit-animation: rotating 1s linear infinite;
-	-moz-animation: rotating 1s linear infinite;
-	-ms-animation: rotating 1s linear infinite;
-	-o-animation: rotating 1s linear infinite;
-	animation: rotating 1s linear infinite;
-	}
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes rotating {
+    from {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    -webkit-animation: rotating 1s linear infinite;
+    -moz-animation: rotating 1s linear infinite;
+    -ms-animation: rotating 1s linear infinite;
+    -o-animation: rotating 1s linear infinite;
+    animation: rotating 1s linear infinite;
+}
 
 .cube {
     display: flex;
@@ -118,6 +134,7 @@ margin-right: 10px;
 .animate-forwards {
     animation: slide-up 0.4s ease forwards;
 }
+
 .animate-backwards {
     animation: slide-down 0.4s ease forwards;
 }
@@ -144,7 +161,7 @@ margin-right: 10px;
     }
 }
 
-.fade-out{
+.fade-out {
     transition-duration: 1s;
     opacity: 0;
 }
@@ -154,7 +171,7 @@ margin-right: 10px;
 }
 
 .cube .name {
-font-size: 45px;
+    font-size: 45px;
 }
 
 .cube .state {

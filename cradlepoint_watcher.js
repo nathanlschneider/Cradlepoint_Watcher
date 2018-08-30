@@ -86,7 +86,6 @@ function conType(data) {
 }
 
 function accountParser(data) {
-
     var accNum = data.split('/');
     return (accNum[6]);
 }
