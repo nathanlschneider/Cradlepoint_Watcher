@@ -4,7 +4,7 @@ const
     expressWs = require('express-ws')(app),
     request = require('request'),
     options = {
-        url: 'https://www.cradlepointecm.com/api/v2/routers/?fields=name,ipv4_address,state,state_updated_at&limit=500',
+        url: 'https://www.cradlepointecm.com/api/v2/routers/?fields=name,ipv4_address,state,state_updated_at,account&limit=500',
         method: 'GET',
         headers: {
             'X-CP-API-ID': 'e79c6722',
@@ -26,6 +26,7 @@ app.use(function (req, res, next) {
 });
 
 app.ws("/connect", (ws) => {
+
     console.log('connected');
     request(options, function (err, res, body) {
         if (err) {
@@ -38,21 +39,29 @@ app.ws("/connect", (ws) => {
     function result(data) {
         let jsonData = JSON.parse(data);
         let lteData = jsonData.data;
+        var dataArr = [];
+        var c = 0;
 
         for (let i = 0; i < jsonData.data.length; i++) {
 
             let name = lteData[i].name;
             let state = lteData[i].state;
+            let account = lteData[i].account;
 
             if (lteData[i].ipv4_address != null) {
                 ipArr = lteData[i].ipv4_address.split(".", 4);
             }
 
             if (ipArr[0] === '166') {
-                var str = `{ "name":"${nameParser(name)}", "state":"${state}", "conType":"${conType(ipArr[0])}" }`;
-                ws.send(str);
+                var str = `{ "name":"${nameParser(name)}", "state":"${state}", "conType":"${conType(ipArr[0])}", "account":"${accountParser(account)}" }`;
+                dataArr.push(str);
             };
         }
+
+        dataArr.sort();
+        dataArr.forEach(element => {
+            ws.send(element);
+        });
     }
 });
 
@@ -76,5 +85,10 @@ function conType(data) {
     }
 }
 
+function accountParser(data) {
+
+    var accNum = data.split('/');
+    return (accNum[6]);
+}
 
 app.listen(8989);

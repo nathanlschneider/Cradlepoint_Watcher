@@ -2,16 +2,41 @@ html, body {
     font-family: 'Exo 2', sans-serif;
     background-color: black;
     color: white;
-/* width: 100%;
-height: 100%; */
 }
 
-h1 {
+footer {
+    display: flex;
+    flex-direction: row;
     position: absolute;
+    justify-content: center;
+    align-items: center;
     bottom: 5px;
+}
+
+#footerTitle {
     font-size: 50px;
 }
+
+#greyBox {
+width: 40px;
+height: 40px;
+border-radius: .25rem;
+background-color: #2e2e2e;
+margin-left: 20px;
+margin-right: 10px;
+
+}
+
+#blueBox {
+    background-color: #384e8b;
+    width: 40px;
+    height: 40px;
+    border-radius: .25rem;
+    margin-left: 20px;
+   margin-right: 10px;
+}
 #content {
+    margin-top: 75px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -19,10 +44,66 @@ h1 {
     align-items: center;
 }
 
+#loader {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    height: 10vh;
+    width: 10vh;
+    border: 2vh solid white;
+    border-left-color: #ffffff22;
+    border-radius: 100%;
+}
+
+@keyframes rotating
+	{
+	from
+		{
+            
+		transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		}
+	to
+		{
+            
+		transform: rotate(360deg);
+		-o-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		-moz-transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+		}
+	}
+@-webkit-keyframes rotating
+	{
+	from
+		{
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		}
+	to
+		{
+		transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+		}
+	}
+.rotating
+	{
+	-webkit-animation: rotating 1s linear infinite;
+	-moz-animation: rotating 1s linear infinite;
+	-ms-animation: rotating 1s linear infinite;
+	-o-animation: rotating 1s linear infinite;
+	animation: rotating 1s linear infinite;
+	}
+
 .cube {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
+    flex: auto auto auto;
+    flex-basis: auto;
     background-color: #2e2e2e;
     color: #ff5100;
     width: 150px;
@@ -31,28 +112,56 @@ h1 {
     align-items: center;
     border-radius: .25rem;
     margin: 10px;
-    transition-duration: .5s
-    
+    opacity: 0;
 }
 
-.cube:hover {
-    transform: skew(20deg) scale(1.2);
+.animate-forwards {
+    animation: slide-up 0.4s ease forwards;
+}
+.animate-backwards {
+    animation: slide-down 0.4s ease forwards;
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.fade-out{
+    transition-duration: 1s;
+    opacity: 0;
+}
+
+.managed {
+    background-color: #384e8b !important;
 }
 
 .cube .name {
-    /* position: relative */
 font-size: 45px;
-
 }
 
 .cube .state {
-    /* position: absolute; */
- 
     font-size: 25px;
 }
 
 .cube .conType {
-    /* position: absolute; */
     font-size: 25px;
 }
 

@@ -1,23 +1,17 @@
 (function () {
 
-    var setLoop = setInterval(function () {
-        location.reload();
-    }, 300000)
-
-    const socket = new WebSocket('ws://mhg-lt047:8989/connect');
-    var cradleArr = [];
-
-    socket.addEventListener('message', (m) => {
-
+    const dataSocket = new WebSocket('ws://mhg-lt047:8989/connect');
+  
+    dataSocket.addEventListener('message', (m) => {
         var arg = JSON.parse(m.data);
-
-        new CradleCube(arg.name, arg.state, arg.conType)
+        new CradleCube(arg.name, arg.state, arg.conType, arg.account)
     })
 
-    function CradleCube(name, state, conType) {
+    function CradleCube(name, state, conType, account) {
         this.name = name;
         this.state = state;
         this.conType = conType;
+        this.account = account;
         this.makeCube();
     }
 
@@ -28,8 +22,11 @@
                 cube = document.createElement('div'),
                 name = document.createElement('span'),
                 state = document.createElement('span'),
-                conType = document.createElement('span');
-
+                conType = document.createElement('span'),
+                loader = document.getElementById('loader'),
+                randomNum = Math.floor(Math.random() * 3000);
+                
+            (this.account === '28784') ? cube.classList.add('managed') : cube.classList.remove('managed');
             cube.classList.add('cube');
             name.innerText = this.name;
             name.classList.add('name');
@@ -44,7 +41,21 @@
             cube.appendChild(state);
             cube.appendChild(conType);
 
-         
+            setTimeout(showCube, randomNum);
+            setTimeout(hideCube, (300000 + randomNum));
+            setTimeout(function(){
+                location.reload();
+            }, 303000);
+            
+            function showCube(){
+                cube.classList.add('animate-forwards');
+                loader.classList.add('fade-out');
+            }
+
+            function hideCube(){
+                cube.classList.remove('animate-forwards');
+                cube.classList.add('animate-backwards');
+            }
         }
     }
 })();

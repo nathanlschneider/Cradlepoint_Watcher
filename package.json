@@ -1,8 +1,8 @@
 {
-  "name": "lte",
+  "name": "cradlepoint_watcher",
   "version": "1.0.0",
-  "description": "\"# lte\"",
-  "main": "app.js",
+  "description": "",
+  "main": "cradlepoint_watcher.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,10 +19,6 @@
   "dependencies": {
     "express": "^4.16.3",
     "express-ws": "^4.0.0",
-    "fs": "0.0.1-security",
-    "os": "^0.1.1",
-    "request": "^2.87.0",
-    "request-promise": "^4.2.2",
-    "ws": "^6.0.0"
+    "request": "^2.88.0"
   }
 }
