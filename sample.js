@@ -4,7 +4,7 @@ const
     expressWs = require('express-ws')(app),
     request = require('request'),
     options = {
-        url: 'https://www.cradlepointecm.com/api/v2/routers/?fields=name,account&limit=10',
+        url: 'https://www.cradlepointecm.com/api/v2/routers/?limit=10',
         method: 'GET',
         headers: {
             'X-CP-API-ID': 'e79c6722',

@@ -1,7 +1,6 @@
 @media only screen and (min-height: 1000px) {
     #content {
         margin-top: 75px;
-
     }
 }
 
@@ -60,6 +59,22 @@ footer {
     align-items: center;
 }
 
+.cube {
+
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    background-color: #2e2e2e;
+    color: #ff5100;
+    width: 135px;
+    height: 135px;
+    justify-content: center;
+    align-items: center;
+    border-radius: .25rem;
+    margin: 10px;
+    opacity: 0;
+}
+
 #loaderLabel {
     position: absolute;
     right: 250px;
@@ -112,23 +127,6 @@ footer {
     -ms-animation: rotating 1s linear infinite;
     -o-animation: rotating 1s linear infinite;
     animation: rotating 1s linear infinite;
-}
-
-.cube {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    flex: auto auto auto;
-    flex-basis: auto;
-    background-color: #2e2e2e;
-    color: #ff5100;
-    width: 150px;
-    height: 150px;
-    justify-content: center;
-    align-items: center;
-    border-radius: .25rem;
-    margin: 10px;
-    opacity: 0;
 }
 
 .animate-forwards {

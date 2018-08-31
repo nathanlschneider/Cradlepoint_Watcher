@@ -3,6 +3,7 @@ const
     app = express(),
     expressWs = require('express-ws')(app),
     request = require('request'),
+    fs = require('fs'),
     options = {
         url: 'https://www.cradlepointecm.com/api/v2/routers/?fields=name,ipv4_address,state,state_updated_at,account&limit=500',
         method: 'GET',
@@ -25,12 +26,11 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.ws("/connect", (ws) => {
-
-    console.log('connected');
+app.ws("/connect", (ws, req) => {
+    console.log(Date(), ' client connected from ', req.connection.remoteAddress);
     request(options, function (err, res, body) {
         if (err) {
-            console.log(err);
+            console.log(Date(), " Uh oh! - ", err.message);
         } else {
             result(body);
         }
@@ -59,8 +59,12 @@ app.ws("/connect", (ws) => {
         }
 
         dataArr.sort();
-        dataArr.forEach(element => {
-            ws.send(element);
+        dataArr.forEach(payload => {
+            ws.send(payload, function(err){
+                if (err) {
+                    console.log(Date(), " Uh oh! - ", err.message);
+                }
+            });
         });
     }
 });
