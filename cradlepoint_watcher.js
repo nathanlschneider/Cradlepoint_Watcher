@@ -15,6 +15,7 @@ const
             'Content-Type': 'application/json'
         }
     };
+    var expiredData = [];
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -53,14 +54,18 @@ app.ws("/connect", (ws, req) => {
             }
 
             if (ipArr[0] === '166') {
-                var str = `{ "name":"${nameParser(name)}", "state":"${state}", "conType":"${conType(ipArr[0])}", "account":"${accountParser(account)}" }`;
+                var str = { name:`${nameParser(name)}`, state:`${state}`, conType:`${conType(ipArr[0])}`, account:`${accountParser(account)}` };
                 dataArr.push(str);
             };
         }
+        
+        diff(dataArr, expiredData);
+        
+        expiredData = dataArr.slice();
 
         dataArr.sort();
         dataArr.forEach(payload => {
-            ws.send(payload, function(err){
+            ws.send(JSON.stringify(payload), function(err){
                 if (err) {
                     console.log(Date(), " Uh oh! - ", err.message);
                 }
@@ -68,6 +73,17 @@ app.ws("/connect", (ws, req) => {
         });
     }
 });
+
+function diff(before, after){
+var changed = after.filter( function( p, idx ) {
+    return Object.keys(p).some( function( prop ) {
+      return p[prop] !== before[idx][prop];
+    })
+  })
+
+  console.log(changed);
+}
+
 
 function nameParser(data) {
     let data2 = data.replace(/\D/g, '');

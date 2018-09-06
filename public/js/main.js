@@ -1,6 +1,6 @@
 (function () {
 
-    const dataSocket = new WebSocket('ws://mhg-lt047:8989/connect');
+    const dataSocket = new WebSocket('ws://localhost:8989/connect');
 
     var mhg = document.getElementById('greyBox'),
         mhgCounter = 0;
