@@ -4,7 +4,6 @@ const
     _ = require('underscore'),
     expressWs = require('express-ws')(app),
     request = require('request'),
-    fs = require('fs'),
     options = {
         url: 'https://www.cradlepointecm.com/api/v2/routers/?fields=name,ipv4_address,state,state_updated_at,account&limit=500',
         method: 'GET',

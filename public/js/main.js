@@ -1,12 +1,14 @@
 (function () {
 
-    const dataSocket = new WebSocket('ws://localhost:8989/connect');
+    const dataSocket = new WebSocket('ws://mhg-heattestlab:8989/connect');
 
-    var mhg = document.getElementById('greyBox'),
+    let mhg = document.getElementById('greyBox'),
         mhgCounter = 0;
-    com = document.getElementById('blueBox'),
+    let com = document.getElementById('blueBox'),
         comCounter = 0;
-
+    let chng = document.getElementById('yellowBox'),
+        chngCounter = 0;
+    
     dataSocket.addEventListener('message', (m) => {
         var arg = JSON.parse(m.data);
         new CradleCube(arg.name, arg.state, arg.conType, arg.account, arg.change)
@@ -39,6 +41,8 @@
                 cube.classList.remove('managed');
                 mhg.innerText = mhgCounter++;
             };
+
+            chng.innerText = chngCounter++;
 
             cube.classList.add('cube');
             (this.change === 'gained') ? cube.classList.add('yellowBorder') : cube.classList.remove('yellowBorder');
