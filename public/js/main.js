@@ -42,7 +42,9 @@
                 mhg.innerText = mhgCounter++;
             };
 
+            if (this.change === 'gained'){
             chng.innerText = chngCounter++;
+            }
 
             cube.classList.add('cube');
             (this.change === 'gained') ? cube.classList.add('yellowBorder') : cube.classList.remove('yellowBorder');
