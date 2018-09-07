@@ -51,6 +51,20 @@ footer {
     margin-right: 10px;
 }
 
+#yellowBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+    border: 2px solid yellow;
+    width: 40px;
+    height: 40px;
+    border-radius: .25rem;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
 #content {
     display: flex;
     flex-direction: row;
@@ -186,4 +200,8 @@ footer {
 
 .offline {
     color: whitesmoke;
+}
+
+.yellowBorder {
+    border: 2px solid yellow;
 }

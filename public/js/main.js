@@ -4,19 +4,20 @@
 
     var mhg = document.getElementById('greyBox'),
         mhgCounter = 0;
-        com = document.getElementById('blueBox'),
+    com = document.getElementById('blueBox'),
         comCounter = 0;
 
     dataSocket.addEventListener('message', (m) => {
         var arg = JSON.parse(m.data);
-        new CradleCube(arg.name, arg.state, arg.conType, arg.account)
+        new CradleCube(arg.name, arg.state, arg.conType, arg.account, arg.change)
     })
 
-    function CradleCube(name, state, conType, account) {
+    function CradleCube(name, state, conType, account, change) {
         this.name = name;
         this.state = state;
         this.conType = conType;
         this.account = account;
+        this.change = change;
         this.makeCube();
     }
 
@@ -32,7 +33,7 @@
                 randomNum = Math.floor(Math.random() * 3000);
 
             if (this.account === '28784') {
-                cube.classList.add('managed') 
+                cube.classList.add('managed')
                 com.innerText = comCounter++;
             } else {
                 cube.classList.remove('managed');
@@ -40,6 +41,7 @@
             };
 
             cube.classList.add('cube');
+            (this.change === 'gained') ? cube.classList.add('yellowBorder') : cube.classList.remove('yellowBorder');
             name.innerText = this.name;
             name.classList.add('name');
             state.innerText = this.state;

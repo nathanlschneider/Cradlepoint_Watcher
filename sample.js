@@ -1,10 +1,11 @@
 const
     express = require('express'),
     app = express(),
+    fs = require('fs'),
     expressWs = require('express-ws')(app),
     request = require('request'),
     options = {
-        url: 'https://www.cradlepointecm.com/api/v2/routers/?limit=10',
+        url: 'https://www.cradlepointecm.com/api/v2/routers/?fields=ipv4_address,name,state&limit=500',
         method: 'GET',
         headers: {
             'X-CP-API-ID': 'e79c6722',
@@ -19,6 +20,7 @@ const
         if (err) {
             console.log(err);
         } else {
-            console.log(JSON.parse(body));
+            fs.appendFile('output.txt', JSON.parse(body));
+            //console.log(JSON.parse(body));
         }
     })
